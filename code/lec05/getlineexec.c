@@ -3,9 +3,13 @@
 #include <unistd.h>
 
 int main(int argc, char** argv) {
-   char** lineptr;
-   size_t size;
-   size = getline(lineptr, &size, stdin);
-   execlp(lineptr);
+   puts("What is thy command:" );
+   char* lineptr = NULL;
+   size_t size = 0;
+   size = getline(&lineptr, &size, stdin);
+   if (size > 0 && lineptr[size-1] == '\n') {
+      lineptr[size-1] = '\0';
+   }
+   execlp(lineptr, "Name of process", "-d", (char*) NULL);
    return 0;
 }
